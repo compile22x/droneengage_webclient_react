@@ -114,10 +114,10 @@ class ClssStreamChannel extends React.Component {
                             <label>{`${v_track.ln} ${actual_fps>0?` - ${actual_fps} fps`:''}`}</label>
                             </div>
                             <div className= "col-2   si-09x css_margin_zero css_padding_2">
-                                <button type="button" className={"btn btn-sm " + v_stream_class}  onClick={ (e) => this.fn_videoStream()}>stream</button>
+                                <button type="button" className={"btn btn-sm " + v_stream_class}  onClick={ () => this.fn_videoStream()}>stream</button>
                             </div>
                             <div className= "col-2   si-09x css_margin_zero css_padding_2">
-                                <button type="button" className={"btn btn-sm " + v_record_class} onClick={ (e) => this.fn_videoRecord(v_startRecord)}>record</button>
+                                <button type="button" className={"btn btn-sm " + v_record_class} onClick={ () => this.fn_videoRecord(v_startRecord)}>record</button>
                             </div>
                         </div>
             );
@@ -164,9 +164,7 @@ export default class ClssStreamDialog extends React.Component
     {
         if (p_me.m_flag_mounted === false)return ;
         
-        p_me.state.p_session = p_session;
-        
-        p_me.setState({'m_update': p_me.state.m_update +1});
+        p_me.setState({'p_session': p_session, 'm_update': p_me.state.m_update +1});
         
         p_me.modal_ctrl_stream_dlg.current.style.display = 'block';
     }
@@ -174,10 +172,10 @@ export default class ClssStreamDialog extends React.Component
     fn_initDialog()
     {
         const me = this;
-        this.modal_ctrl_stream_dlg.current.onmouseover = function (e) {
+        this.modal_ctrl_stream_dlg.current.onmouseover = function () {
             me.modal_ctrl_stream_dlg.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_stream_dlg.current.onmouseout = function (e) {
+        this.modal_ctrl_stream_dlg.current.onmouseout = function () {
             if (me.opaque_clicked === false) {
                 me.modal_ctrl_stream_dlg.current.style.opacity = '0.4';
             }
@@ -197,7 +195,7 @@ export default class ClssStreamDialog extends React.Component
         this.modal_ctrl_stream_dlg.current.style.display = 'none';
         if ((this.state !== null && this.state !== undefined) && (this.state.hasOwnProperty('p_session') === true))
         {
-            this.state.p_session = null;            
+            this.setState({'p_session': null});
         }
     }
 

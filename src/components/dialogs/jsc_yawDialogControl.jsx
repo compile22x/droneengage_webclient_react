@@ -101,13 +101,13 @@ export default class ClssYawDialog extends React.Component
     {
         const me = this;
         //this.modal_ctrl_yaw.current.draggable = true;
-        this.modal_ctrl_yaw.current.onmousedown = function (e) {
+        this.modal_ctrl_yaw.current.onmousedown = function () {
             me.modal_ctrl_yaw.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_yaw.current.onmouseover = function (e) {
+        this.modal_ctrl_yaw.current.onmouseover = function () {
             me.modal_ctrl_yaw.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_yaw.current.onmouseout =function (e) {
+        this.modal_ctrl_yaw.current.onmouseout =function () {
             if (me.opaque_clicked === false) {
                 me.modal_ctrl_yaw.current.style.opacity = '0.4';
             }
@@ -122,7 +122,7 @@ export default class ClssYawDialog extends React.Component
         fn_gotoUnit_byPartyID(this.p_andruavUnit.getPartyID())
     }
 
-    fn_onYaw(e)
+    fn_onYaw()
     {
         const target_angle_deg = parseInt(this.yaw_knob.current.value);
         const current_angle_deg = (js_helpers.CONST_RADIUS_TO_DEGREE * ((this.p_andruavUnit.m_Nav_Info.p_Orientation.yaw + js_helpers.CONST_PTx2) % js_helpers.CONST_PTx2)).toFixed(1);
@@ -142,7 +142,7 @@ export default class ClssYawDialog extends React.Component
         this.modal_ctrl_yaw.current.style.display = 'none';
         if ((this.state !== null && this.state !== undefined) && (this.state.hasOwnProperty('p_session') === true))
         {
-            this.state.p_session = null;            
+            this.setState({'p_session': null});
         }
     }
 
@@ -184,10 +184,10 @@ export default class ClssYawDialog extends React.Component
 					<div id="modal_yaw_knob_footer" className="form-group text-center ">
 						<div className= "row">
 						<div className="btn-group w-100 d-flex flex-wrap">
-							<button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={(e) => this.fn_opacityDialog()}>opaque</button>
-							<button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={(e)=>this.fn_gotoUnit(e)}>Goto</button>
-							<button id="btnYaw" type="button" className="btn btn-sm btn-danger" onClick={(e)=>this.fn_onYaw(e)}>YAW</button>
-							<button id="btnResetYaw" type="button" className="btn btn-sm btn-warning" onClick={(e)=>this.fn_Reset(e)}>reset YAW</button>
+							<button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={() => this.fn_opacityDialog()}>opaque</button>
+							<button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={()=>this.fn_gotoUnit()}>Goto</button>
+							<button id="btnYaw" type="button" className="btn btn-sm btn-danger" onClick={()=>this.fn_onYaw()}>YAW</button>
+							<button id="btnResetYaw" type="button" className="btn btn-sm btn-warning" onClick={()=>this.fn_Reset()}>reset YAW</button>
 						</div>
 						</div>
 					</div>

@@ -13,7 +13,7 @@ import * as js_helpers from '../../js/js_helpers.js'
  * highlighted_points= [[section,depth,color],...]
  * [draw_pointer]
  */
-export class Class_Radar_Screen extends React.Component {
+export class ClassRadarScreen extends React.Component {
   constructor(props) {
     super(props);
     this.canvasRef = React.createRef();

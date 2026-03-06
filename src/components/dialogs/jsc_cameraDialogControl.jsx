@@ -67,8 +67,8 @@ class ClssCameraDevice extends React.Component {
             camera_index = js_andruavMessages.CONST_CAMERA_SOURCE_MOBILE;
         }
 
-        js_globals.v_andruavFacade.API_CONST_RemoteCommand_takeImage2(this.props.prop_session.m_unit.getPartyID(), 
-            this.props.prop_session.m_unit.m_Video.m_videoTracks[this.props.prop_track_number].id,
+        js_globals.v_andruavFacade.API_CONST_RemoteCommand_takeImage2(this.props.prop_session.m_unit.getPartyID(),
+            camera_index,
             this.props.prop_parent.fn_getNumOfShots(),
             this.props.prop_parent.fn_getInterval(), 
             0);
@@ -166,9 +166,7 @@ export default class ClssCameraDialog extends React.Component
         
         if (p_me.m_flag_mounted === false)return ;
         
-        p_me.state.p_session = p_session;
-		
-        p_me.setState({'m_update': p_me.state.m_update +1});
+        p_me.setState({'p_session': p_session, 'm_update': p_me.state.m_update +1});
         
         p_me.modal_ctrl_cam.current.style.display = 'block';
     }
@@ -194,13 +192,13 @@ export default class ClssCameraDialog extends React.Component
     {
         const me = this;
         //this.modal_ctrl_cam.current.draggable = true;
-        this.modal_ctrl_cam.current.onmousedown = function (e) {
+        this.modal_ctrl_cam.current.onmousedown = function () {
             me.modal_ctrl_cam.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_cam.current.onmouseover = function (e) {
+        this.modal_ctrl_cam.current.onmouseover = function () {
             me.modal_ctrl_cam.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_cam.current.onmouseout =function (e) {
+        this.modal_ctrl_cam.current.onmouseout =function () {
             if (me.opaque_clicked === false) {
                 me.modal_ctrl_cam.current.style.opacity = '0.4';
             }
@@ -223,7 +221,7 @@ export default class ClssCameraDialog extends React.Component
         this.modal_ctrl_cam.current.style.display = 'none';
         if ((this.state !== null && this.state !== undefined) && (this.state.hasOwnProperty('p_session') === true))
         {
-            this.state.p_session = null;            
+            this.setState({'p_session': null});
         }
     }
 
@@ -271,7 +269,7 @@ export default class ClssCameraDialog extends React.Component
 					    <h4 className="text-success text-start">Still Image of' {v_unitName} </h4>
 					</div>
 					<div className="col-2 float-right">
-					    <button id="btnclose" type="button" className="btn-close" onClick={(e)=>this.fn_closeDialog()}></button>
+					    <button id="btnclose" type="button" className="btn-close" onClick={()=>this.fn_closeDialog()}></button>
 					</div>
 				</div>
 			</div>
@@ -303,8 +301,8 @@ export default class ClssCameraDialog extends React.Component
                     </div>        
                     <div id="modal_ctrl_cam_footer" className="form-group text-center localcontainer css_ontop">
                         <div className= "btn-group w-100 d-flex flex-wrap">
-                            <button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={(e) => this.fn_opacityDialog()}>opaque</button>
-                            <button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={(e) => this.fn_gotoUnitPressed()}>Goto</button>
+                            <button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={() => this.fn_opacityDialog()}>opaque</button>
+                            <button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={() => this.fn_gotoUnitPressed()}>Goto</button>
                             
                         </div>
                     </div>

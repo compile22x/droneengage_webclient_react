@@ -67,13 +67,13 @@ export default class ClssLidarInfoDialog extends React.Component
     {
         const me = this;
         //this.modal_ctrl_lidar_info.current.draggable = true;
-        this.modal_ctrl_lidar_info.current.onmousedown = function (e) {
+        this.modal_ctrl_lidar_info.current.onmousedown = function () {
             me.modal_ctrl_lidar_info.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_lidar_info.current.onmouseover = function (e) {
+        this.modal_ctrl_lidar_info.current.onmouseover = function () {
             me.modal_ctrl_lidar_info.current.style.opacity = '1.0';
         };
-        this.modal_ctrl_lidar_info.current.onmouseout =function (e) {
+        this.modal_ctrl_lidar_info.current.onmouseout =function () {
             if (me.opaque_clicked === false) {
                 me.modal_ctrl_lidar_info.current.style.opacity = '0.4';
             }
@@ -100,6 +100,10 @@ export default class ClssLidarInfoDialog extends React.Component
     {
 	    this.modal_ctrl_lidar_info.current.style.opacity = '';
         this.modal_ctrl_lidar_info.current.style.display = 'none';
+        if ((this.state !== null && this.state !== undefined) && (this.state.hasOwnProperty('m_update') === true))
+        {
+            this.setState({'m_update': 0});
+        }
     }
 
 
@@ -140,7 +144,7 @@ export default class ClssLidarInfoDialog extends React.Component
 						<h3 className="text-success text-start">{'Lidar - ' + unitname}</h3>
 						</div>
 						<div className="col-2 float-right">
-						<button id="btnclose" type="button" className="btn-close" onClick={(e)=>this.fn_closeDialog()}></button>
+						<button id="btnclose" type="button" className="btn-close" onClick={()=>this.fn_closeDialog()}></button>
 						</div>
 						</div>
 					</div>
@@ -150,18 +154,18 @@ export default class ClssLidarInfoDialog extends React.Component
 					<div id="modal_ctrl_lidar_info_footer" key={this.key + "m3"} className="form-group text-center ">
                         <div className= "row">
                             <div className= "col-md-3">
-                            <button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={(e) => this.fn_opacityDialog()}>opaque</button>
+                            <button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={() => this.fn_opacityDialog()}>opaque</button>
                             </div>
                             
                             <div className= "col-md-3">
-                                <button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={(e) => this.fn_gotoUnit()}>Goto</button>
+                                <button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={() => this.fn_gotoUnit()}>Goto</button>
                             </div>
                             
                             <div className= "col-md-3">
-                                <button id="btnFollow" type="button" className="btn btn-sm btn-danger" onClick={(e) => this.fn_follow(true)}>Follow</button>
+                                <button id="btnFollow" type="button" className="btn btn-sm btn-danger" onClick={() => this.fn_follow(true)}>Follow</button>
                             </div>
                             <div className= "col-md-3">
-                                <button id="btnReset" type="button" className="btn btn-sm btn-warning" onClick={(e) => this.fn_follow(false)}>Reset</button>
+                                <button id="btnReset" type="button" className="btn btn-sm btn-warning" onClick={() => this.fn_follow(false)}>Reset</button>
                             </div>
                             
                         </div>

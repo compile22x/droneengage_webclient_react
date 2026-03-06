@@ -3,7 +3,7 @@ import 'jquery-ui-dist/jquery-ui.min.js';
 
 import React    from 'react';
 
-import {Class_Radar_Screen} from '../micro_gadgets/jsc_mctrl_radar_screen.jsx'
+import {ClassRadarScreen} from '../micro_gadgets/jsc_mctrl_radar_screen.jsx'
 
 import {EVENTS as js_event} from '../../js/js_eventList.js'
 import {js_eventEmitter} from '../../js/js_eventEmitter.js'
@@ -127,7 +127,7 @@ export class ClssCtrlLidarDevice extends React.Component {
 
         return (
             
-        <Class_Radar_Screen sections={8} depth={ranges+1} follow_unit={this.props.follow_unit} rotation_steps={ticks} rotation={rotation} highlighted_points={obstacles} draw_pointer/>
+        <ClassRadarScreen sections={8} depth={ranges+1} follow_unit={this.props.follow_unit} rotation_steps={ticks} rotation={rotation} highlighted_points={obstacles} draw_pointer/>
 
         );
     }

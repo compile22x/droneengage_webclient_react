@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CFieldChecked } from '../micro_gadgets/jsc_mctrl_field_check';
 import { ClssFireEvent } from '../micro_gadgets/jsc_mctrl_fire_event';
-import { Class_Radar_Screen } from '../micro_gadgets/jsc_mctrl_radar_screen';
+import { ClassRadarScreen } from '../micro_gadgets/jsc_mctrl_radar_screen';
 import { CTriStateChecked } from '../micro_gadgets/jsc_mctrl_tri_state_check';
 import { CONST_DEBUG_CONTROL_PAGE } from '../../js/js_siteConfig';
 
@@ -150,12 +150,12 @@ const DebugControlsPage = () => {
                 <div className="col-md-6 mb-4">
                     <div className="card bg-secondary txt-theme-aware">
                         <div className="card-header">
-                            <h5>Class_Radar_Screen Component</h5>
+                            <h5>ClassRadarScreen Component</h5>
                         </div>
                         <div className="card-body">
                             <div className="d-flex justify-content-center mb-3">
                                 <div style={{ width: '300px' }}>
-                                    <Class_Radar_Screen 
+                                    <ClassRadarScreen 
                                         sections={8}
                                         depth={5}
                                         rotation={radarRotation}
@@ -208,7 +208,7 @@ const DebugControlsPage = () => {
                                     <span className="text-success"> Active</span>
                                 </div>
                                 <div className="col-md-3">
-                                    <strong>Class_Radar_Screen:</strong> 
+                                    <strong>ClassRadarScreen:</strong> 
                                     <span className="text-success"> Active</span>
                                 </div>
                             </div>
