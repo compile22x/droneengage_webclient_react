@@ -102,12 +102,11 @@ class ClssServoUnit extends React.Component {
                 btn_max_css = ' css_servo_selected bg-warning text-dark ';
             }
             
-            this.state.pendingButton = null;
+            // pendingButton reset handled by componentDidUpdate
         }
 
         // Calculate slider position percentage for visual indicator
-        const currentValue = this.props.prop_value || 1500;
-        const sliderPercent = ((currentValue - 1000) / 1000) * 100;
+        const currentValue = this.props.prop_value || 1500; // eslint-disable-line no-unused-vars
 
         return (
             <div id='servoblk' key={this.key} className='row margin_zero bg-secondary border rounded-3' title={'value: ' + this.props.prop_value} >
@@ -352,9 +351,9 @@ export default class ClssServoControl extends React.Component {
                         <div id="modal_ctrl_servo_footer" className="form-group text-center localcontainer" ref={this.footerRef}>
                             <div className="btn-group w-100 d-flex flex-wrap">
                                     <button id="opaque_btn" type="button" className="btn btn-sm btn-primary" data-bs-toggle="button" aria-pressed="false" autoComplete="off" ref={this.opaqueBtnRef}>opaque</button>
-                                    <button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={(e) => fn_gotoUnit_byPartyID(p_andruavUnit.getPartyID())}>Goto</button>
-                                    <button id="btnRefresh" type="button" className="btn btn-sm btn-warning" onClick={ (e) => js_globals.v_andruavFacade.API_requestMavlinkServoChannel(p_andruavUnit)} >Refresh</button>
-                                    <button id="btnHelp" type="button" className="btn btn-sm btn-primary" onClick={ (e) => fn_helpPage(js_siteConfig.CONST_MANUAL_URL)}>Help</button>
+                                    <button id="btnGoto" type="button" className="btn btn-sm btn-success" onClick={() => fn_gotoUnit_byPartyID(p_andruavUnit.getPartyID())}>Goto</button>
+                                    <button id="btnRefresh" type="button" className="btn btn-sm btn-warning" onClick={ () => js_globals.v_andruavFacade.API_requestMavlinkServoChannel(p_andruavUnit)} >Refresh</button>
+                                    <button id="btnHelp" type="button" className="btn btn-sm btn-primary" onClick={ () => fn_helpPage(js_siteConfig.CONST_MANUAL_URL)}>Help</button>
                                 
                             </div>
                         </div>

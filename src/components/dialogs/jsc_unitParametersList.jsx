@@ -3,12 +3,11 @@ import $ from 'jquery';
 import 'jquery-ui-dist/jquery-ui.min.js';
 import Draggable from 'react-draggable';
 
-import * as js_siteConfig from '../../js/js_siteConfig.js';
 import * as js_common from '../../js/js_common.js';
 import { js_globals } from '../../js/js_globals.js';
 import { EVENTS as js_event } from '../../js/js_eventList.js';
 import { js_eventEmitter } from '../../js/js_eventEmitter.js';
-import { fn_do_modal_confirmation, fn_gotoUnit, fn_helpPage } from '../../js/js_main.js';
+import { fn_do_modal_confirmation, fn_gotoUnit } from '../../js/js_main.js';
 
 class ClssParameterItem extends React.Component {
     constructor() {
@@ -22,6 +21,7 @@ class ClssParameterItem extends React.Component {
     }
 
     componentWillUpdate() {
+        // eslint-disable-next-line react/no-direct-mutation-state
         this.state.param_value = this.props.prop_param.param_value;
     }
 
@@ -57,7 +57,7 @@ class ClssParameterItem extends React.Component {
         }
         return (
             <tr>
-                <td scope="row">{this.props.prop_param.param_index}</td>
+                <td>{this.props.prop_param.param_index}</td>
                 <td><p>{this.props.prop_param.param_id}</p></td>
                 <td>
                     <input
@@ -69,7 +69,7 @@ class ClssParameterItem extends React.Component {
                     />
                 </td>
                 <td>
-                    <button className="btn btn-danger btn-sm btn_prop" onClick={(e) => this.fn_saveParameter(e)}>
+                    <button className="btn btn-danger btn-sm btn_prop" onClick={() => this.fn_saveParameter()}>
                         Save
                     </button>
                 </td>
@@ -274,7 +274,7 @@ export default class ClssUnitParametersList extends React.Component {
                                 type="button"
                                 className="btn btn-danger btn-sm ctrlbtn"
                                 title="Save all changes"
-                                onClick={(e) => this.fn_saveAll()}
+                                onClick={() => this.fn_saveAll()}
                             >
                                 SAVE
                             </button>
@@ -282,7 +282,7 @@ export default class ClssUnitParametersList extends React.Component {
                                 type="button"
                                 className="btn btn-warning btn-sm ctrlbtn"
                                 title="Reset to current values"
-                                onClick={(e) => this.fn_resetAll(e)}
+                                onClick={() => this.fn_resetAll()}
                             >
                                 RESET
                             </button>
@@ -290,7 +290,7 @@ export default class ClssUnitParametersList extends React.Component {
                                 type="button"
                                 className="btn btn-success btn-sm ctrlbtn"
                                 title="Reload parameter from FCB"
-                                onClick={(e) => this.fn_reloadAll(e)}
+                                onClick={() => this.fn_reloadAll()}
                             >
                                 RELOAD
                             </button>
@@ -330,7 +330,7 @@ export default class ClssUnitParametersList extends React.Component {
                                 <button
                                     type="button"
                                     className="btn-close"
-                                    onClick={(e) => this.fn_closeDialog()}
+                                    onClick={() => this.fn_closeDialog()}
                                 ></button>
                             </div>
                         </div>
@@ -345,7 +345,7 @@ export default class ClssUnitParametersList extends React.Component {
                                     id="opaque_btn"
                                     type="button"
                                     className="btn btn-sm btn-primary"
-                                    onClick={(e) => this.fn_opacityDialog()}
+                                    onClick={() => this.fn_opacityDialog()}
                                 >
                                     Opaque
                                 </button>
@@ -355,7 +355,7 @@ export default class ClssUnitParametersList extends React.Component {
                                     id="btnGoto"
                                     type="button"
                                     className="btn btn-sm btn-success"
-                                    onClick={(e) => fn_gotoUnit(p_andruavUnit)}
+                                    onClick={() => fn_gotoUnit(p_andruavUnit)}
                                 >
                                     Goto
                                 </button>
